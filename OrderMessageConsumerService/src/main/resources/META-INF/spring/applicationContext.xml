@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:msg="http://www.omshree.com/schema/messaging"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.omshree.com/schema/messaging
+	http://www.omshree.com/schema/messaging/messaging-framework.xsd">
+
+	<bean id="propertiesConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:messaging.properties</value>
+			</list>
+		</property>
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="searchSystemEnvironment" value="true" />
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+	
+	<context:component-scan base-package="com.omshree.messaging" />
+
+	<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<!-- brokerURL, You may have different IP or port -->
+		<constructor-arg index="0" value="${messaging.url}" />
+	</bean>
+	
+	<bean id = "singleConnectionFactory" class = "org.springframework.jms.connection.SingleConnectionFactory">
+		<property name="targetConnectionFactory" ref = "amqConnectionFactory"/>
+		<property name="reconnectOnException" value="true"/>
+	</bean>
+
+	<!-- Pooled Spring connection factory -->
+	<bean id="connectionFactory"
+		class="org.springframework.jms.connection.CachingConnectionFactory">
+		<constructor-arg ref="amqConnectionFactory" />
+	</bean>
+
+	<!-- Default Destination Queue Definition -->
+	<bean id="destinationTopic" class="org.apache.activemq.command.ActiveMQTopic">
+		<!-- name of the topic -->
+		<constructor-arg index="0" value="${messaging.topic.name}" />
+	</bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="defaultDestination" ref="destinationTopic" />
+	</bean>
+	 
+	<msg:durableConsumer destinationName = "OrderTopic"  destinationType="T" consumerName="orderConsumer" clientId="2" listenerClass="com.rf.messaging.consumer.listener.OrderMessageListener"/>
+
+</beans>

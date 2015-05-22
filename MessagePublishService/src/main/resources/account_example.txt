@@ -1,0 +1,13 @@
+http://localhost.:8080/messaging/publish/account
+
+method: post
+
+Json Request:
+{
+      "firstName": "Naga",
+      "lastName": "Nanda",
+	  "address1" : "3330 Country Dr",
+	  "city" : "Fremont",
+	  "state" : "CA",
+	  "zip" : "94538"
+}

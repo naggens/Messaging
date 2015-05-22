@@ -1,0 +1,10 @@
+http://localhost.:8080/messaging/publish/order
+
+method: post
+
+Json Request:
+
+{
+      "number": "1234",
+      "name": "Test Order"
+}

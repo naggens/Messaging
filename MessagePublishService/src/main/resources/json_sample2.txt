@@ -1,0 +1,12 @@
+{
+    "destinationName": "Account-Queue",
+    "destinationType": "Q",
+  	"account":{
+      "firstName": "Naga",
+      "lastName": "Nanda",
+	  "address1" : "3330 Country Dr",
+	  "city" : "Fremont",
+	  "state" : "CA",
+	  "zip" : "94538"
+    }
+}

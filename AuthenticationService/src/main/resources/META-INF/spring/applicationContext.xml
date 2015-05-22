@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="propertiesConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:authentication.properties</value>
+			</list>
+		</property>
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="searchSystemEnvironment" value="true" />
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+	
+	<context:component-scan base-package="com.rf.security" />
+	<bean id = "loginRestService" class = "com.rf.security.authentication.rest.LoginRestService">
+		<property name="authenticateUser" ref = "AuthenticateUser"/>
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    
+    <bean id = "authenticationDAO" class = "com.rf.security.authentication.dao.AuthenticationDAO">
+    	<property name="datasource" ref = "dataSource"/>
+    	<property name="insertUserSql" value = "${user.insert.sql}"/>
+    	<property name="selectUserSql" value = "${user.select.sql}"/>
+    </bean>
+    
+    <bean id = "AuthenticateUser" class = "com.rf.security.authentication.authenticate.AuthenticateUser">
+    	<property name="authenticationDAO" ref = "authenticationDAO"/>
+    </bean>
+
+</beans>
