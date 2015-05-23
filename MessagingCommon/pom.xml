@@ -7,10 +7,10 @@
 		<artifactId>ServiceParent</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<groupId>com.rf</groupId>
-	<artifactId>AccountMessageConsumerService</artifactId>
-	<name>Spring JMS Consumer Webapp example</name>
-	<packaging>war</packaging>
+	
+	<artifactId>MessagingCommon</artifactId>
+	<name>Spring JMS Messaging common</name>
+	<packaging>jar</packaging>
 	
 	<properties>
 		<jetty.port>8020</jetty.port>
@@ -88,10 +88,6 @@
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.rf</groupId>
-			<artifactId>MessagingCommon</artifactId>
 		</dependency>
 
 		<dependency>
