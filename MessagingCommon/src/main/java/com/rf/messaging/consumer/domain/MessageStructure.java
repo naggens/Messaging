@@ -1,10 +1,8 @@
-package com.rf.messaging.consumer.xml;
+package com.rf.messaging.consumer.domain;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.rf.messaging.consumer.domain.AccountDO;
-import com.rf.messaging.consumer.domain.OrderDO;
 import com.thoughtworks.xstream.XStream;
 
 @XmlRootElement
@@ -19,15 +17,6 @@ public class MessageStructure {
 	@XmlElement(name = "account", required = false)
 	private AccountDO account;
 	
-	@XmlElement(name = "order", required = false)
-	private OrderDO order;
-	
-	public OrderDO getOrder() {
-		return order;
-	}
-	public void setOrder(OrderDO order) {
-		this.order = order;
-	}
 	public AccountDO getAccount() {
 		return account;
 	}

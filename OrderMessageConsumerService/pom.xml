@@ -89,6 +89,11 @@
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.rf</groupId>
+			<artifactId>MessagingCommon</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>

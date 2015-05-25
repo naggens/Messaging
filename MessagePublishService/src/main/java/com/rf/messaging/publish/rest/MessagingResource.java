@@ -7,9 +7,9 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.rf.messaging.publish.domain.AccountDO;
-import com.rf.messaging.publish.domain.MessageStructure;
-import com.rf.messaging.publish.domain.OrderDO;
+import com.rf.messaging.consumer.domain.AccountDO;
+import com.rf.messaging.consumer.domain.MessageStructure;
+import com.rf.messaging.consumer.domain.OrderDO;
 import com.rf.messaging.publish.producer.MessageSender;
 
 @Path("/messaging")

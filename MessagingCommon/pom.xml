@@ -7,15 +7,15 @@
 		<artifactId>ServiceParent</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	
+
 	<artifactId>MessagingCommon</artifactId>
 	<name>Spring JMS Messaging common</name>
 	<packaging>jar</packaging>
-	
+
 	<properties>
 		<jetty.port>8020</jetty.port>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
@@ -88,6 +88,26 @@
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
 		</dependency>
 
 		<dependency>

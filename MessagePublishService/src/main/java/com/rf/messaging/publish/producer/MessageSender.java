@@ -13,8 +13,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
-import com.rf.messaging.publish.domain.AccountDO;
-import com.rf.messaging.publish.domain.OrderDO;
+import com.rf.messaging.consumer.domain.AccountDO;
+import com.rf.messaging.consumer.domain.OrderDO;
 
 public class MessageSender {
 	private JmsTemplate jmsTemplate;

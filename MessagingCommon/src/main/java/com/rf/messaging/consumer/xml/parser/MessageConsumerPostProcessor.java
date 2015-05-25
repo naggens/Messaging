@@ -1,5 +1,9 @@
 package com.rf.messaging.consumer.xml.parser;
 
+import java.lang.reflect.InvocationTargetException;
+
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -59,6 +63,7 @@ public class MessageConsumerPostProcessor implements BeanFactoryPostProcessor {
 			
 			SingleConnectionFactory jmsFactory = (SingleConnectionFactory)beanFactory.getBean("singleConnectionFactory");
 			BeanDefinitionBuilder listenerBuilder = BeanDefinitionBuilder.genericBeanDefinition(DefaultMessageListenerContainerAdaptar.class);
+			DataSource dataSource = (DataSource)beanFactory.getBean("dataSource");
 			listenerBuilder.addConstructorArgValue(jmsFactory);
 			listenerBuilder.addConstructorArgValue(this.destinationName);
 			if(log.isDebugEnabled()){
@@ -68,7 +73,7 @@ public class MessageConsumerPostProcessor implements BeanFactoryPostProcessor {
 			
 			listenerBuilder.addConstructorArgValue(this.destinationType);
 			
-			listenerBuilder.addConstructorArgValue(Class.forName(this.listenerClass).newInstance());
+			listenerBuilder.addConstructorArgValue(Class.forName(this.listenerClass).getConstructor(DataSource.class).newInstance(dataSource));
 			//SESSION_TRANSACTED(0), AUTO_ACKNOWLEDGE(1), CLIENT_ACKNOWLEDGE(2),  DUPS_OK_ACKNOWLEDGE(3);
 			listenerBuilder.addConstructorArgValue(1);
 			//listenerBuilder.addConstructorArgValue(concurrentConsumers);
@@ -91,6 +96,18 @@ public class MessageConsumerPostProcessor implements BeanFactoryPostProcessor {
 			throw new RuntimeException(ex);
 		} catch (ClassNotFoundException ex) {
 			log.error("ClassNotFoundException while creating Listener bean for Message Consumer in createMessageConsumer: ", ex);
+			throw new RuntimeException(ex);
+		} catch (IllegalArgumentException ex) {
+			log.error("IllegalArgumentException while creating Listener bean for Message Consumer in createMessageConsumer: ", ex);
+			throw new RuntimeException(ex);
+		} catch (SecurityException ex) {
+			log.error("SecurityException while creating Listener bean for Message Consumer in createMessageConsumer: ", ex);
+			throw new RuntimeException(ex);
+		} catch (InvocationTargetException ex) {
+			log.error("InvocationTargetException while creating Listener bean for Message Consumer in createMessageConsumer: ", ex);
+			throw new RuntimeException(ex);
+		} catch (NoSuchMethodException ex) {
+			log.error("NoSuchMethodException while creating Listener bean for Message Consumer in createMessageConsumer: ", ex);
 			throw new RuntimeException(ex);
 		}
 	}
