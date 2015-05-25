@@ -1,8 +1,0 @@
-{
-    "destinationName": "Test-Queue",
-    "destinationType": "Q",
-  	"object":{
-      "name": "Naga",
-      "designation": "Tester"
-    }
-}
