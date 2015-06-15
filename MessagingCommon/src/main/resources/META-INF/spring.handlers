@@ -1,1 +1,1 @@
-http\://www.omshree.com/schema/messaging=com.rf.messaging.consumer.xml.MessagingNamespaceHandler
+http\://www.rf.com/schema/messaging=com.rf.messaging.consumer.xml.MessagingNamespaceHandler

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns="http://www.omshree.com/schema/messaging"
+<xsd:schema xmlns="http://www.rf.com/schema/messaging"
 			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 			targetNamespace="http://www.omshree.com/schema/messaging" elementFormDefault="qualified"
 			attributeFormDefault="unqualified">

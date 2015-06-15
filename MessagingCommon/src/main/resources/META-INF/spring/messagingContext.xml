@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:msg="http://www.omshree.com/schema/messaging"
+	xmlns:msg="http://www.rf.com/schema/messaging"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
-	http://www.omshree.com/schema/messaging
-	http://www.omshree.com/schema/messaging/messaging-framework.xsd">
+	http://www.rf.com/schema/messaging
+	http://www.rf.com/schema/messaging/messaging-framework.xsd">
 
 	<bean id="messagingConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath*:common.properties</value>
+				<value>file:${application.configuration.home}/application.properties</value>
 			</list>
 		</property>
 		<property name="ignoreResourceNotFound" value="true" />
