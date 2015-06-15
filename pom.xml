@@ -232,6 +232,7 @@
 		<module>./MessagePublishService</module>
 		<module>./OrderMessageConsumerService</module>
 		<module>./MessagingCommon</module>
+		<module>./MessagingTestService</module>
 	</modules>
 
 </project>

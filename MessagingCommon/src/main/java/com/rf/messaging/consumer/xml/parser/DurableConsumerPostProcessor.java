@@ -80,8 +80,8 @@ public class DurableConsumerPostProcessor implements BeanFactoryPostProcessor {
 			listenerBuilder.addConstructorArgValue(consumerName);
 			listenerBuilder.addConstructorArgValue(clientId);
 			
-			//listenerBuilder.addConstructorArgValue(concurrentConsumers);
-			//listenerBuilder.addConstructorArgValue(maxConcurrentConsumers);
+			listenerBuilder.addConstructorArgValue(concurrentConsumers);
+			listenerBuilder.addConstructorArgValue(maxConcurrentConsumers);
 			
 			BeanDefinition beanDefinition = listenerBuilder.getBeanDefinition();	
 			BeanDefinitionRegistry beanDefinitionRegistry = null;

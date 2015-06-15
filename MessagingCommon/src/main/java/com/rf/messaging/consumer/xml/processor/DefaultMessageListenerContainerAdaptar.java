@@ -46,7 +46,7 @@ public class DefaultMessageListenerContainerAdaptar implements InitializingBean,
 		this.acknowledgeMode = acknowledgeMode;
 	}
 	
-	public DefaultMessageListenerContainerAdaptar(SingleConnectionFactory jmsFactory, String destinationName, String destinationType, MessageListener messageConsumerImpl, int acknowledgeMode, String durableSubscriptionName, String clientId){
+	public DefaultMessageListenerContainerAdaptar(SingleConnectionFactory jmsFactory, String destinationName, String destinationType, MessageListener messageConsumerImpl, int acknowledgeMode, String durableSubscriptionName, String clientId, int concurrentConsumers, int maxConcurrentConsumers){
 		Assert.notNull(jmsFactory, "jmsFactory cannot be null");
 		Assert.notNull(destinationName, "destinationName cannot be null");
 		Assert.notNull(destinationType, "destinationType cannot be null");
@@ -59,6 +59,8 @@ public class DefaultMessageListenerContainerAdaptar implements InitializingBean,
 		this.acknowledgeMode = acknowledgeMode;
 		this.durableSubscriptionName = durableSubscriptionName;
 		this.clientId = clientId;
+		this.concurrentConsumers = concurrentConsumers;
+		this.maxConcurrentConsumers = maxConcurrentConsumers;
 	}
 		
 	public void startActivities(){
