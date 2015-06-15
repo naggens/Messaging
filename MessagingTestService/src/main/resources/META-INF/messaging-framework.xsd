@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.omshree.com/schema/messaging"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.omshree.com/schema/messaging" elementFormDefault="qualified"
+			attributeFormDefault="unqualified">
+	
+	<xsd:element name="messageConsumer">
+		<xsd:complexType>
+			<xsd:attribute name="destinationName" type="xsd:string" default="" />
+			<xsd:attribute name="destinationType" default="Q" >
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+				      <xsd:pattern value="Q|T"/>
+				    </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="listenerClass" type="xsd:string" default="" />
+			<xsd:attribute name="enableListener" type="xsd:string" default="true" />
+			<xsd:attribute name="concurrentConsumers" type="xsd:string" default="1" />
+			<xsd:attribute name="maxConcurrentConsumers" type="xsd:string" default="1" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="durableConsumer">
+		<xsd:complexType>
+			<xsd:attribute name="destinationName" type="xsd:string" default="" />
+			<xsd:attribute name="destinationType" default="Q" >
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+				      <xsd:pattern value="Q|T"/>
+				    </xsd:restriction>
+			    </xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="listenerClass" type="xsd:string" default="" />
+			<xsd:attribute name="enableListener" type="xsd:string" default="true" />
+			<xsd:attribute name="consumerName" type="xsd:string" default="" />
+			<xsd:attribute name="clientId" type="xsd:string"/>
+			<xsd:attribute name="concurrentConsumers" type="xsd:string" default="1" />
+			<xsd:attribute name="maxConcurrentConsumers" type="xsd:string" default="1" />
+		</xsd:complexType>
+	</xsd:element>
+	
+</xsd:schema>
